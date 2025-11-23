@@ -1,16 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // Global elements
     const body = document.body;
     const themeToggle = document.getElementById('theme-toggle');
     
-    // -----------------------------------------------------------------
-    // 1. Dark/Light Mode Logic (Includes OS Preference Check)
-    // -----------------------------------------------------------------
     const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-    // Set initial theme based on local storage or OS preference
     if (savedTheme === 'light' || (!savedTheme && !prefersDark)) {
         body.classList.remove('dark-mode');
         body.classList.add('light-mode');
@@ -19,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
         body.classList.remove('light-mode');
     }
 
-    // Toggle logic on button click
     themeToggle.addEventListener('click', () => {
         const isDarkMode = body.classList.toggle('dark-mode');
         body.classList.toggle('light-mode', !isDarkMode);
@@ -32,9 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // -----------------------------------------------------------------
-    // 2. Portfolio Filtering Logic
-    // -----------------------------------------------------------------
     const filterButtons = document.querySelectorAll('.filter-btn');
     const galleryItems = document.querySelectorAll('.gallery-item');
 
@@ -42,67 +33,55 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', () => {
             const filterValue = button.getAttribute('data-filter');
 
-            // Update active state for buttons
             filterButtons.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
 
-            // Filter the gallery items
             galleryItems.forEach(item => {
                 const itemCategory = item.getAttribute('data-category');
                 
                 if (filterValue === 'all' || filterValue === itemCategory) {
-                    item.style.display = 'block'; // Show item
+                    item.style.display = 'block'; 
                 } else {
-                    item.style.display = 'none'; // Hide item
+                    item.style.display = 'none'; 
                 }
             });
         });
     });
 
 
-    // -----------------------------------------------------------------
-    // 3. Video Lightbox Modal Logic (Creative Element)
-    // -----------------------------------------------------------------
     const lightbox = document.getElementById('video-lightbox');
     const closeBtn = document.querySelector('.close-btn');
     const videoContainer = document.querySelector('.video-container');
 
-    // Open Lightbox on Gallery Item Click
     galleryItems.forEach(item => {
         item.addEventListener('click', () => {
             const videoUrl = item.getAttribute('data-video-url');
             
-            // Create the YouTube iframe
             const iframe = document.createElement('iframe');
-            // Adding autoplay=1 to start playback immediately
             iframe.setAttribute('src', videoUrl + "?autoplay=1&rel=0"); 
             iframe.setAttribute('allow', 'autoplay; encrypted-media; gyroscope; picture-in-picture');
             iframe.setAttribute('allowfullscreen', '');
             
-            videoContainer.innerHTML = ''; // Clear previous video
+            videoContainer.innerHTML = ''; 
             videoContainer.appendChild(iframe);
 
             lightbox.style.display = 'block';
         });
     });
 
-    // Close Lightbox Function
     const closeLightbox = () => {
         lightbox.style.display = 'none';
-        // Stop the video playback by clearing the container
         videoContainer.innerHTML = '';
     };
 
-    closeBtn.addEventListener('click', closeLightbox); // X button
+    closeBtn.addEventListener('click', closeLightbox); 
     
-    // Close when clicking outside the content area
     lightbox.addEventListener('click', (e) => {
         if (e.target === lightbox) {
             closeLightbox();
         }
     });
 
-    // Close on ESC key press
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && lightbox.style.display === 'block') {
             closeLightbox();
@@ -110,9 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // -----------------------------------------------------------------
-    // 4. Service Calculator Logic (Enhanced Functionality)
-    // -----------------------------------------------------------------
     const serviceType = document.getElementById('service-type');
     const durationInput = document.getElementById('duration');
     const revisionCount = document.getElementById('revision-count');
@@ -130,10 +106,8 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Calculation: (Rate per Service Unit * Duration) + (Revisions Premium)
         let total = baseRate * duration;
         
-        // Add a premium for revisions beyond the first two
         const REVISION_PREMIUM_PER_EXTRA = 50; 
         const revisionCost = Math.max(0, revisions - 2) * REVISION_PREMIUM_PER_EXTRA; 
         total += revisionCost;
@@ -142,17 +116,13 @@ document.addEventListener('DOMContentLoaded', () => {
         totalCostElement.innerHTML = `**Total Estimated Price: $${total.toFixed(0)}**`;
     };
 
-    // Attach event listeners for real-time calculation
     serviceType.addEventListener('change', calculateEstimate);
     durationInput.addEventListener('input', calculateEstimate);
     revisionCount.addEventListener('input', calculateEstimate);
     
-    calculateEstimate(); // Initial calculation on load
+    calculateEstimate(); 
 
 
-    // -----------------------------------------------------------------
-    // 5. Contact Form Validation (Enhanced Functionality)
-    // -----------------------------------------------------------------
     const contactForm = document.getElementById('contact-form');
     const formMessage = document.getElementById('form-message');
     const nameInput = document.getElementById('name');
@@ -186,14 +156,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // -----------------------------------------------------------------
-    // 6. Mobile Menu Toggle (Basic)
-    // -----------------------------------------------------------------
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
 
     menuToggle.addEventListener('click', () => {
-        // Simple toggle for mobile navigation visibility
         navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
         navLinks.style.flexDirection = 'column';
         navLinks.style.position = 'absolute';
@@ -204,7 +170,6 @@ document.addEventListener('DOMContentLoaded', () => {
         navLinks.style.boxShadow = '0 10px 10px rgba(0, 0, 0, 0.2)';
     });
 
-    // Close mobile menu when a link is clicked
     navLinks.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
             if (window.innerWidth <= 768) {
@@ -213,7 +178,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Fix layout on resize (for mobile menu)
     window.addEventListener('resize', () => {
         if (window.innerWidth > 768) {
             navLinks.style.display = 'flex';
@@ -225,4 +189,5 @@ document.addEventListener('DOMContentLoaded', () => {
             navLinks.style.flexDirection = 'column';
         }
     });
+
 });
