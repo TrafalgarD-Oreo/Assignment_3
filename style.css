@@ -1,8 +1,7 @@
-/* --- Global Variables and Resets --- */
 :root {
-    --color-primary: #FF7700; /* Orange Accent */
-    --color-secondary: #4299E1; /* Secondary Blue Accent */
-    --color-background-dark: #121212; /* Deep Black/Dark Gray */
+    --color-primary: #FF7700; 
+    --color-secondary: #4299E1; 
+    --color-background-dark: #121212; 
     --color-card-dark: #1E1E1E;
     --color-text-light: #F0F0F0;
     --color-text-faded: #AAAAAA;
@@ -39,12 +38,11 @@ h1, h2, h3, .logo {
     margin: 0 auto;
 }
 
-/* --- Dark/Light Mode General Styles --- */
 .light-mode {
-    --color-primary: #0077FF; /* Blue Accent in light mode */
-    --color-background-dark: #F7FAFC; /* Off-White */
+    --color-primary: #0077FF; 
+    --color-background-dark: #F7FAFC; 
     --color-card-dark: #FFFFFF;
-    --color-text-light: #2D3748; /* Dark Gray */
+    --color-text-light: #2D3748; 
     --color-text-faded: #6B7280;
 }
 
@@ -64,11 +62,10 @@ h1, h2, h3, .logo {
     color: var(--color-text-light);
 }
 .light-mode .calculator-section {
-    background-color: #E2E8F0; /* Light section background */
+    background-color: #E2E8F0; 
 }
 
 
-/* --- Header & Navigation --- */
 .main-header {
     background-color: var(--color-card-dark);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -103,7 +100,6 @@ h1, h2, h3, .logo {
 
 .menu-toggle { display: none; }
 
-/* --- Theme Toggle Button --- */
 .theme-toggle-btn {
     background: none;
     border: 2px solid var(--color-primary);
@@ -123,7 +119,6 @@ h1, h2, h3, .logo {
     color: var(--color-primary);
 }
 
-/* Hide one icon based on mode */
 .icon-dark { display: none; }
 .dark-mode .icon-dark { display: inline; }
 .dark-mode .icon-light { display: none; }
@@ -131,7 +126,6 @@ h1, h2, h3, .logo {
 .light-mode .icon-dark { display: none; }
 
 
-/* --- Hero Section --- */
 .hero-section {
     min-height: 50vh;
     display: flex;
@@ -156,7 +150,6 @@ h1, h2, h3, .logo {
     color: var(--color-text-faded);
 }
 
-/* --- Buttons --- */
 .btn {
     padding: 12px 30px;
     border: none;
@@ -184,7 +177,6 @@ h1, h2, h3, .logo {
     margin-left: 15px;
 }
 
-/* --- About Section --- */
 .about-section {
     background-color: var(--color-card-dark);
     border-radius: 8px;
@@ -221,7 +213,6 @@ h1, h2, h3, .logo {
     border-radius: 8px;
 }
 
-/* --- Filter Controls --- */
 .filter-controls {
     display: flex;
     justify-content: center;
@@ -252,7 +243,6 @@ h1, h2, h3, .logo {
     border-color: var(--color-primary);
 }
 
-/* --- Gallery Grid --- */
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -319,7 +309,6 @@ h1, h2, h3, .logo {
     background: rgba(255, 119, 0, 0.7);
 }
 
-/* --- Lightbox Modal Styles --- */
 .lightbox {
     display: none;
     position: fixed;
@@ -341,7 +330,7 @@ h1, h2, h3, .logo {
 
 .video-container {
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    padding-bottom: 56.25%; 
     height: 0;
     overflow: hidden;
     background: black;
@@ -371,7 +360,6 @@ h1, h2, h3, .logo {
     color: var(--color-primary);
 }
 
-/* --- Pricing Calculator Section --- */
 .calculator-section {
     background-color: var(--color-card-dark);
 }
@@ -443,7 +431,6 @@ h1, h2, h3, .logo {
     font-weight: 800;
 }
 
-/* --- Contact Form & Error Styling --- */
 .contact-form {
     max-width: 600px;
     margin: 0 auto;
@@ -466,7 +453,6 @@ h1, h2, h3, .logo {
 }
 
 
-/* Form Validation Error Message */
 .error-message {
     color: var(--color-error);
     font-weight: 600;
@@ -474,7 +460,6 @@ h1, h2, h3, .logo {
     text-align: center;
 }
 
-/* --- Footer --- */
 footer {
     background-color: var(--color-card-dark);
     text-align: center;
@@ -485,7 +470,6 @@ footer {
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* --- Media Queries for Responsiveness --- */
 @media (max-width: 900px) {
     .about-content {
         flex-direction: column;
@@ -525,4 +509,5 @@ footer {
     .btn-secondary {
         margin-left: 0;
     }
+
 }
